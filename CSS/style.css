@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -5,18 +6,26 @@
   font-family: sans-serif;
   text-decoration: none;
   list-style: none;
+
 }
+body {
+  overflow:unset; /* Hide scrollbars */
+}
+
 /*Header*/
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 header{
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 10%;
   border-bottom:  1px solid black;
-  background-color: white;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background-color: rgb(255, 255, 255);
+
  
 
 }
@@ -59,9 +68,9 @@ header nav ul {
 header nav li{
   margin: 20px;
 }
-header nav li:last-child{
+/* header nav li:last-child{
   margin-right: 2%;
-}
+} */
 
 header nav li a {
 display: flex;
@@ -82,16 +91,18 @@ header nav li a .profile{
 /*Body Section*/
 section{
   padding: 10px 10%;
-  background-color: #e49a9a;
+  background-color: #ffffff;
   display: flex;
+  justify-content: center;
 
 }
 .left-side{
-  width: 100%;
+  width: 85%;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  background-color: rgb(207, 198, 198);
+  padding: 16px 100px;
+  background-color: rgba(212, 206, 206, 0.983);
 }
 
 
@@ -101,6 +112,8 @@ section{
   margin: 25px 0px; 
   background-color: white ;
   border: 1px solid black;
+  border-radius: 25px;
+  box-shadow: 20px 20px 50px rgb(54, 52, 52);
 }
 .posts .post-title{
   display: flex;
@@ -121,6 +134,14 @@ object-fit: contain;
   font-weight: bold;
 
 }
+.posts .post-content .text-post {
+  margin: 5px;
+  
+  }
+.posts .post-content .text-post p {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  }
 .posts .post-content img{
 width: 100%;
 height: 100%;
@@ -176,20 +197,49 @@ margin-bottom: 3px;
   border: none;
 }
 /*Media Query*/
-@media (max-width:716px){
+ @media (max-width:716px){
   
 header{
   padding: 0px 2%;
   width: 100%;
   flex-wrap: wrap;
+  justify-content: center;
   }
 section{
     padding: 10px 10px;
     width: 100%;
     overflow: hidden;
+
   }
+  header nav li{
+    margin: 10px;
+  }
+
 
   
 
 
-}
+} 
+
+@media (max-width:522px){
+  
+  header{
+    padding: 0px 9px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+  section{
+      /* padding: 10px 0px; */
+      width: 100%;
+      overflow: hidden;
+    }
+    header nav li{
+      margin: 5px;
+    }
+  
+  
+    
+  
+  
+  }
