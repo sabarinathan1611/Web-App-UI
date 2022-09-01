@@ -30,7 +30,7 @@ header{
 
 }
 header .logo{
-  height: 29px;
+  height: 90px;
 
 }
 header .logo img{
@@ -97,7 +97,7 @@ section{
 
 }
 .left-side{
-  width: 85%;
+  width: 50%;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -196,6 +196,18 @@ margin-bottom: 3px;
   outline: none;
   border: none;
 }
+/* #setting:hover{
+  animation: rotae 1000ms ;
+}
+@keyframes rotae {
+  100%{
+    transform: rotate(360deg);
+    
+  }
+
+
+  
+} */
 /*Media Query*/
  @media (max-width:716px){
   
@@ -214,6 +226,8 @@ section{
   header nav li{
     margin: 10px;
   }
+  .left-side{
+    width: 85%;}
 
 
   
@@ -237,6 +251,8 @@ section{
     header nav li{
       margin: 5px;
     }
+    .left-side{
+      width: 85%;}
   
   
     
