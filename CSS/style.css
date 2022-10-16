@@ -24,7 +24,7 @@ header{
   align-items: center;
   padding: 0px 10%;
   border-bottom:  1px solid black;
-  background-color: rgb(255, 255, 255);
+  background-color: #4361EE
 
  
 
@@ -37,6 +37,7 @@ header .logo img{
 
   height: 100%;
   object-fit: contain;
+  border-radius: 9%;
   
 }
 
@@ -69,7 +70,9 @@ header nav li{
   margin: 20px;
 }
 /* header nav li:last-child{
-  margin-right: 2%;
+  animation: rotate 1000ms  ;
+  background-color: black;
+  width: 10px;
 } */
 
 header nav li a {
@@ -88,32 +91,49 @@ header nav li a .profile{
   border-radius: 50%;
   object-fit: cover;
 }
+
+.right-side {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.right-side ul {
+
+  background-color: aquamarine;
+  
+}
 /*Body Section*/
 section{
-  padding: 10px 10%;
-  background-color: #ffffff;
+  padding: 10px 0%;
+  background-color: #fdf0d5e3;
   display: flex;
   justify-content: center;
 
 }
 .left-side{
-  width: 50%;
+  width: 60%;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   padding: 16px 100px;
-  background-color: rgba(212, 206, 206, 0.983);
+  background-color: #FDF0D5;;
 }
 
 
 
 /*Post*/
-.posts{
-  margin: 25px 0px; 
-  background-color: white ;
+.post-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.posts {
+  margin: 25px 0px;
+  background-color: white;
   border: 1px solid black;
   border-radius: 25px;
-  box-shadow: 20px 20px 50px rgb(54, 52, 52);
+  box-shadow: 2px -2px 50px 3px rgb(54 52 52);
 }
 .posts .post-title{
   display: flex;
@@ -143,8 +163,8 @@ object-fit: contain;
   font-size: 20px;
   }
 .posts .post-content img{
-width: 100%;
-height: 100%;
+width: 99%;
+height: 60%;
 object-fit: contain;
 }
 /*Post Footer*/
@@ -196,18 +216,17 @@ margin-bottom: 3px;
   outline: none;
   border: none;
 }
-/* #setting:hover{
-  animation: rotae 1000ms ;
+.rotate{
+  animation: rotate 1000ms  ;
 }
-@keyframes rotae {
-  100%{
-    transform: rotate(360deg);
+@keyframes rotate {
+    100%{
+
+    transform: rotate(360deg) ;
     
   }
-
-
-  
-} */
+ 
+}
 /*Media Query*/
  @media (max-width:716px){
   
@@ -216,6 +235,11 @@ header{
   width: 100%;
   flex-wrap: wrap;
   justify-content: center;
+  }
+  header .logo{
+    height: 50px;
+    
+  
   }
 section{
     padding: 10px 10px;
@@ -234,7 +258,7 @@ section{
 
 
 } 
-
+/*Mobile view */
 @media (max-width:522px){
   
   header{
@@ -242,6 +266,10 @@ section{
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
+    }
+    header .logo{
+      display: none;
+    
     }
   section{
       /* padding: 10px 0px; */
@@ -252,7 +280,8 @@ section{
       margin: 5px;
     }
     .left-side{
-      width: 85%;}
+      width: 85%;
+    }
   
   
     
