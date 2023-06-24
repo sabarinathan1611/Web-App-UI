@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+
+    <div class="paragraph">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at eleifend sapien, eu fringilla ligula. Donec blandit malesuada risus eu viverra.</p>
+        <a href="#" class="read-more">See more</a>
+      </div>
+
+
+      <script>
+        document.querySelectorAll('.paragraph').forEach(function(el) {
+            el.classList.add('collapsed'); // start collapsed
+          
+            el.querySelector('.read-more').addEventListener('click', function(e) {
+              e.preventDefault();
+              el.classList.toggle('collapsed');
+            });
+          });
+          
+      </script>
+      
+    
+</body>
+</html>
