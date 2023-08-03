@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Kanit&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -95,7 +96,7 @@ margin: 5px;
   
 }
 
-header nav li a .profile{
+.profile img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -197,7 +198,7 @@ margin-bottom: 3px;
 .posts  .post-footer-content .likes{
   margin-bottom: 8px;
       }
-.posts  .post-footer-content .comment{
+.posts  .post-footer-content .comments{
         font-size: 10px;
         margin: 5px;
             }
@@ -226,6 +227,39 @@ margin-bottom: 3px;
   outline: none;
   border: none;
 }
+
+/*Comment*/
+.cmt-profile {
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.cmt-profile img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 5px;
+}
+.comment{
+  margin: 5px;
+
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.comment-content p {
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+
+}
+.cmt-username{
+  font-size: 12px;
+}
+
 .rotate{
   animation: rotate 1000ms  ;
 }

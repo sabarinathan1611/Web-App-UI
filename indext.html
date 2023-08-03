@@ -120,7 +120,7 @@
                 <!-- {%if post.edited == True %} -->
                 <small>(edited)</small>
                 <!-- {%endif%} -->
-                <p> <!--{{ post.post }}-->>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, officia,
+                <p> <!--{{ post.post }}-->Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, officia,
                   fugit sit beatae ea
                   accusantium fugiat, molestias officiis tempora alias saepe a doloribus reiciendis ab temporibus? Sequi
                   aspernatur accusamus aliquam?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus omnis
@@ -129,47 +129,82 @@
                 </p>
               </div>
 
-
-              <img src="/images/main_image_star-forming_region_carina_nircam_final-5mb.jpg" height="400" width="600"
+              <!-- {%if post.img_name != None%} -->
+              <img src="{{url_for('static', filename='images/post/'+post.img_name)}}" height="400" width="600"
                 alt="post">
-
+              <!-- {%endif%} -->
             </div>
+
             <div class="post-footer">
               <div class="like-comment">
-                <i><a href="#"><img class="icons" src="/images/logo/pen-to-square-solid.svg" alt="create post"></a></i>
-                <i><a href="#"><img class="icons" src="/images/logo/heart-regular.svg" alt="create post"></a></i>
-                <!-- <i><a href="#"><img class="icons" src="/images/logo/dislike.svg" alt="create post"></a></i> -->
+                <!-- {%if current_user.id in post.likes|map(attribute="user_id")|list%} -->
+                <i><a href="#"><img class="icons" src="/images/logo/like.svg" alt="like"></a></i>
+                <!-- {%else%} -->
+                <i><a href="#"><img class="icons" src="/images/logo/unlike.svg" alt="unlike"></a></i>
+                <!-- {%endif%} -->
+                <i><img onclick="comments()" class="icons" src="/images/logo/comment.png" alt="unlike"></i>
               </div>
               <div class="edit">
-                <i><a href="#"><img class="icons" src="/images/logo/pen-to-square-solid.svg" alt="create post"></a></i>
+                <!-- {% if post.poster.id == current_user.id or current_user.admin == True%} -->
+                <i><img class="icons" onClick=" deletePost( {{ post.id }} )" src="/images/logo/trash.png" alt=""></i>
+                <i><a href="{{url_for('views.edit_note',id=post.id)}}"><img class="icons"
+                      src="/images/logo/pen-to-square-solid.svg" alt="create post"></a></i>
+                <!-- {% endif %} -->
               </div>
             </div>
 
             <div class="post-footer-content">
+              <span id="likes-count-{{post.id}}">
+                <p class="likes">{{ post.likes|length }}</p>
+              </span>
 
-              <p class="likes">10 likes</p>
 
 
 
               <p class="comments">546</p>
-              <P class="time">Time:12.784pm</P>
+              <P class="time">{{post.date.date()}}</P>
 
             </div>
 
             <div class="add-comment">
 
-              <form action="">
+              <form method="POST" action="/comment/{{post.id}}">
                 <div class="comment-left-side">
                   <input type="text" name="" placeholder="Add comment" id="">
                 </div>
                 <div class="comment-right-side">
-                  <button>Comment</button>
+                  <button type="submit">Comment</button>
                 </div>
 
               </form>
 
             </div>
+            <div class="" id="comment">
+              <!-- {% for comment in post.comments %} -->
+              <div id="" class="comment">
+                <div class="cmt-profile">
+                  <img class="image" src="{{url_for('static', filename='images/'+comment.user.profile_pic)}}" width="32"
+                    height="32" alt="Profile">
+                  <div class="cmt-username">
 
+                    <legend class="name"><!--{{comment.user.user_name}}--></legend>
+
+                  </div>
+                </div>
+
+                <div class="comment-content">
+                  <p>
+                    <!-- {{comment.text}} -->
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quisquam esse ipsum placeat
+                    repellendus facere eum aliquam neque ab, magnam, laboriosam quasi ad tenetur voluptas suscipit error
+                    veniam possimus atque?
+                  </p>
+                </div>
+
+
+              </div>
+              <!-- {%endfor%} -->
+            </div>
 
           </div>
         </li>
@@ -177,17 +212,6 @@
 
 
     </div>
-    <!-- <div class="right-side">
-      <ul>
-        <li><a href="#"><img class="icons" src="/images/logo/admin.svg" alt="login"></a></li>
-        <li><a href="#"><img class="icons" src="/images/logo/page-removebg-preview.png" alt="My post"></a></li>
-        <li><a href="#"><img class="icons" src="/images/logo/house-solid.svg" alt="Home"></a></li>
-        <li><a href="#"><img class="icons" src="/images/logo/page-removebg-preview.png" alt="My post"></a></li>
-      </ul>
-
-    </div> -->
-
-
   </section>
   <script src="/JavaScript/index.js"></script>
   <script src="/JavaScript/createpost.js"></script>
