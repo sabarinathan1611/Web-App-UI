@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo/Logo.png">
+  <link rel="stylesheet" href="/CSS/style.css">
+  <link rel="stylesheet" href="/CSS/createpost.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Project</title>
+</head>
+
+<body>
+  <div class="navbar">
+
+    <header>
+
+      <div class="logo">
+        <img src="images/logo/D_LOGO.png" alt="LOGO">
+      </div>
+
+      <!-- <div class="search-box">
+        <i class="fas fa-search"></i>
+        <form action="#"><input type="text" placeholder="Search"></form>
+
+      </div> -->
+      <nav>
+        <ul>
+          <li><a href="{{url_for('views.home')}}"><img class="icons" src="images/logo/house-solid.svg" alt="Home"></a>
+          </li>
+          <li><a href="{{url_for('views.my_post')}}"><img class="icons" src="images/logo/page-removebg-preview.png"
+                alt="My post"></a>
+          </li>
+          <li><a href="#"><img onclick="creatPostu()" id="newPost" class="icons" src="images/logo/create.svg"
+                alt="create post">
+              <div class="forcrtpost">
+                <div id="creatpost" class="wrapper">
+                  <form action="{{url_for('views.createpost')}}" class="form" method="post"
+                    enctype="multipart/form-data">
+                    <!-- {{ form.csrf_token }}
+                    {{form.post(placeholder="Type something..." name="text" id="text" cols="30" rows="10"
+                    required)}} -->
+                    <textarea placeholder="Type something..." name="text" id="text" cols="30" rows="10"
+                      required>        </textarea>
+                    <!-- {{form.image(class="fileinput" type="file" imageonly)}} -->
+                    <input class="fileinput" type="file" imageonly>
+                    <button type="submit">send</button>
+
+                  </form>
+                </div>
+              </div>
+            </a></li>
+          <li><a href="{{url_for('views.profile')}}"><img class="profile"
+                src="{{url_for('static', filename='images/'+current_user.profile_pic)}}" alt="Profile">
+              <div class="data">
+
+              </div>
+            </a></li>
+          <li><i href=""><img class="icons" onclick="ro()" id="setting" src="images/logo/gear-solid.svg" alt="setting">
+
+              <div id="set" class="setbox">
+                <!-- {%if current_user.admin  == True or current_user.id == 1   %} -->
+                <div class="foradmin">
+
+                  <i><a href=""><img src="images/logo/admin.svg" alt="Admin">
+                      <legend>Admin</legend>
+                    </a>
+                  </i>
+
+                </div>
+                <!-- {% endif %} -->
+                <div class="forlogout">
+                  <i><a href="{{url_for('auth.logout')}}"><img src="images/logo/logout-svgrepo-com.svg" alt="Logout">
+                      <legend>Logout</legend>
+                    </a>
+                  </i>
+
+                </div>
+
+              </div>
+          </li>
+
+        </ul>
+
+      </nav>
+    </header>
+
+  </div>
+  <section>
+    <div class="left-side">
+      <ul>
+        <!-- {% for post in posts %} -->
+        <li>
+          <div class="posts">
+
+
+            <div class="post-title">
+
+              <div class="profile">
+
+                <img class="image" src="{{url_for('static', filename='images/'+post.poster.profile_pic)}}" width="32"
+                  height="32" alt="Profile">
+
+              </div>
+
+              <div class="username">
+
+                <p class="name"> <!--{{post.poster.user_name}}--></p>
+
+              </div>
+
+            </div>
+
+            <div class="post-content">
+              <div class="text-post">
+                <!-- {%if post.edited == True %} -->
+                <small>(edited)</small>
+                <!-- {%endif%} -->
+                <p> <!--{{ post.post }}-->Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, officia,
+                  fugit sit beatae ea
+                  accusantium fugiat, molestias officiis tempora alias saepe a doloribus reiciendis ab temporibus? Sequi
+                  aspernatur accusamus aliquam?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus omnis
+                  atque totam, incidunt nesciunt voluptatum nulla ducimus eius cum ea nisi veniam? Laboriosam reiciendis
+                  maiores neque porro quaerat. Excepturi, repellendus.
+                </p>
+              </div>
+
+              <!-- {%if post.img_name != None%} -->
+              <img src="{{url_for('static', filename='images/post/'+post.img_name)}}" height="400" width="600"
+                alt="post">
+              <!-- {%endif%} -->
+            </div>
+
+            <div class="post-footer">
+              <div class="like-comment">
+                <!-- {%if current_user.id in post.likes|map(attribute="user_id")|list%} -->
+                <i><a href="#"><img class="icons" src="/images/logo/like.svg" alt="like"></a></i>
+                <!-- {%else%} -->
+                <i><a href="#"><img class="icons" src="/images/logo/unlike.svg" alt="unlike"></a></i>
+                <!-- {%endif%} -->
+                <i><img onclick="comments()" class="icons" src="/images/logo/comment.png" alt="unlike"></i>
+              </div>
+              <div class="edit">
+                <!-- {% if post.poster.id == current_user.id or current_user.admin == True%} -->
+                <i><img class="icons" onClick=" deletePost( {{ post.id }} )" src="/images/logo/trash.png" alt=""></i>
+                <i><a href="{{url_for('views.edit_note',id=post.id)}}"><img class="icons"
+                      src="/images/logo/pen-to-square-solid.svg" alt="create post"></a></i>
+                <!-- {% endif %} -->
+              </div>
+            </div>
+
+            <div class="post-footer-content">
+              <span id="likes-count-{{post.id}}">
+                <p class="likes">{{ post.likes|length }}</p>
+              </span>
+
+
+
+
+              <p class="comments">546</p>
+              <P class="time">{{post.date.date()}}</P>
+
+            </div>
+
+            <div class="add-comment">
+
+              <form method="POST" action="/comment/{{post.id}}">
+                <div class="comment-left-side">
+                  <input type="text" name="" placeholder="Add comment" id="">
+                </div>
+                <div class="comment-right-side">
+                  <button type="submit">Comment</button>
+                </div>
+
+              </form>
+
+            </div>
+            <div class="" id="comment">
+              <!-- {% for comment in post.comments %} -->
+              <div id="" class="comment">
+                <div class="cmt-profile">
+                  <img class="image" src="{{url_for('static', filename='images/'+comment.user.profile_pic)}}" width="32"
+                    height="32" alt="Profile">
+                  <div class="cmt-username">
+
+                    <legend class="name"><!--{{comment.user.user_name}}--></legend>
+
+                  </div>
+                </div>
+
+                <div class="comment-content">
+                  <p>
+                    <!-- {{comment.text}} -->
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quisquam esse ipsum placeat
+                    repellendus facere eum aliquam neque ab, magnam, laboriosam quasi ad tenetur voluptas suscipit error
+                    veniam possimus atque?
+                  </p>
+                </div>
+
+
+              </div>
+              <!-- {%endfor%} -->
+            </div>
+
+          </div>
+        </li>
+      </ul>
+
+
+    </div>
+  </section>
+  <script src="/JavaScript/index.js"></script>
+  <script src="/JavaScript/createpost.js"></script>
+</body>
+
+</html>

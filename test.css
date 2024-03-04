@@ -1,0 +1,18 @@
+.paragraph p {
+    max-width: 100px; /* truncate the text */
+    overflow: hidden;
+    color: blue;
+  }
+  
+  .paragraph.collapsed p {
+    max-width: none; /* show full text */
+  }
+  
+  .paragraph .read-more {
+    display: block;
+  }
+  
+  .paragraph.collapsed .read-more {
+    display: none; /* hide the link when expanded */
+  }
+  
